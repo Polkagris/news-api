@@ -24,10 +24,12 @@ function ArticleDetail(props) {
   return (
     <div>
       {item !== undefined ? (
-        <div>
+        <div style={css.articleContainer}>
           <h1>{item.title}</h1>
           <img src={item.urlToImage} alt={item.urlToImage} />{" "}
-          <p>{item.content}</p>
+          <p style={css.description}>{item.description}</p>
+          <p style={css.content}>{item.content}</p>
+          <a href={item.url}>Full article: {item.url}</a>
         </div>
       ) : (
         false
@@ -36,5 +38,26 @@ function ArticleDetail(props) {
     </div>
   );
 }
+
+const css = {
+  articleContainer: {
+    display: "flex",
+    flexDirection: "column",
+    maxWidth: "70%",
+    /* justifyContent: "center",
+    alignItems: "center", */
+    margin: "0 auto",
+    padding: "15px",
+    backgroundColor: "#eeee"
+  },
+  description: {
+    fontSize: "28px",
+    fontWeight: 600
+  },
+  content: {
+    fontSize: "25px",
+    fontWeight: 400
+  }
+};
 
 export default ArticleDetail;

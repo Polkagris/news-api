@@ -36,17 +36,20 @@ function Articles(props) {
   };
 
   return (
-    <div style={css.articleContainer}>
-      <h1>Articles</h1>
+    <div style={css.articlesContainer}>
+      <h1 style={css.title}>Articles</h1>
       {items.map((item, index) => (
-        <Link
-          style={css.link}
-          to={`/articles/${item.url}`}
-          key={item.url}
-          onClick={() => getArticleIndex(index)}
-        >
-          {item.title}
-        </Link>
+        <div style={css.itemContainer}>
+          <img src={item.urlToImage} alt="Image" style={css.articleImage} />
+          <Link
+            style={css.link}
+            to={`/articles/${item.url}`}
+            key={item.url}
+            onClick={() => getArticleIndex(index)}
+          >
+            {item.title}
+          </Link>
+        </div>
       ))}
     </div>
   );
@@ -54,14 +57,32 @@ function Articles(props) {
 
 const css = {
   link: {
-    //display: "flex"
+    textDecoration: "none",
+    color: "black",
+    fontSize: "30px",
+    width: "70%",
+    fontWeight: "bold"
   },
-
-  articleContainer: {
+  title: {
+    width: "100%",
+    textAlign: "center"
+  },
+  articlesContainer: {
     display: "flex",
-    flexDirection: "column",
+    flexWrap: "wrap",
     justifyContent: "center",
     alignItems: "center"
+  },
+  itemContainer: {
+    display: "flex",
+    flexDirection: "column",
+    //  For more newspaper like feel
+    //maxWidth: "50%",
+    maxWidth: "500px",
+    margin: "0 30px 20px 20px"
+  },
+  articleImage: {
+    height: "300px"
   }
 };
 

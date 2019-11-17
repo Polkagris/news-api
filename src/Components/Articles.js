@@ -7,6 +7,7 @@ function Articles(props) {
 
   useEffect(() => {
     fetchArticles();
+    getArticleIndex();
   }, []);
 
   const fetchArticles = () => {
@@ -24,11 +25,6 @@ function Articles(props) {
       });
   };
 
-  // Get article index
-  useEffect(() => {
-    getArticleIndex();
-  }, []);
-
   // Callback-function for getting the index and correct article from map
   const getArticleIndex = (item, index) => {
     props.indexCallback(item, index);
@@ -40,7 +36,7 @@ function Articles(props) {
 
   const getTopicHandler = () => {
     const url =
-      "https://newsapi.org/v2/top-headlines?" +
+      "https://newsapi.org/v2/everything?" +
       `q=${topic}&` +
       "pageSize=10&" +
       "apiKey=4355957195de4294ad512147dbb0167a";
@@ -58,9 +54,14 @@ function Articles(props) {
     <div style={css.articlesContainer}>
       <h1 style={css.title}>Top Stories Right Now</h1>
       <div style={css.topicContainer}>
-        <div>News Topic: </div>
-        <input onChange={onTopicChangeHandler} type="text" />
-        <button onClick={getTopicHandler}>Search</button>
+        <input
+          onChange={onTopicChangeHandler}
+          type="text"
+          style={css.topicInput}
+        />
+        <button onClick={getTopicHandler} style={css.topicSearchButton}>
+          Search Topic
+        </button>
       </div>
       <label />
       {items.map((item, index) => (
@@ -98,6 +99,23 @@ const css = {
     alignItems: "center",
     width: "100%",
     margin: "20px 0"
+  },
+  topicInput: {
+    display: "inlineBlock",
+    padding: "10px 15px",
+    fontSize: "20px",
+    borderRadius: 0,
+    border: "1px solid gray"
+  },
+  topicSearchButton: {
+    backgroundColor: "green",
+    color: "white",
+    display: "inlineBlock",
+    padding: "10px 15px",
+    fontSize: "20px",
+    borderRadius: 0,
+    border: "1px solid transparent",
+    cursor: "pointer"
   },
   articlesContainer: {
     display: "flex",

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Navigation() {
   return (
     <div style={css.nav}>
-      <div>Hello</div>
+      <div>Global News</div>
       <Link style={css.navLink} to="/articles">
         Articles
       </Link>

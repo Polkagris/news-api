@@ -1,11 +1,11 @@
 import React from "react";
 
-function About() {
+function Topic() {
   return (
     <div>
-      <h1>About</h1>
+      <h1>Topic</h1>
     </div>
   );
 }
 
-export default About;
+export default Topic;

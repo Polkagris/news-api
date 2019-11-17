@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 function ArticleDetail(props) {
-  const [item, setItem] = useState([]);
+  /*   const [item, setItem] = useState([]);
 
   useEffect(() => {
     fetchItem();
@@ -20,16 +20,20 @@ function ArticleDetail(props) {
   };
 
   console.log(`Article nr. ${props.articleIndex}`, item);
-
+ */
   return (
     <div>
-      {item !== undefined ? (
+      {props.article !== undefined ? (
         <div style={css.articleContainer}>
-          <h1>{item.title}</h1>
-          <img src={item.urlToImage} alt={item.urlToImage} />{" "}
-          <p style={css.description}>{item.description}</p>
-          <p style={css.content}>{item.content}</p>
-          <a href={item.url}>Full article: {item.url}</a>
+          <h1>{props.article.title}</h1>
+          <img
+            src={props.article.urlToImage}
+            alt={props.article.urlToImage}
+          />{" "}
+          <p style={css.description}>{props.article.description}</p>
+          <p style={css.content}>{props.article.content}</p>
+          <a href={props.article.url}>Full article: {props.article.url}</a>
+          <h2>{props.article.title}</h2>
         </div>
       ) : (
         false

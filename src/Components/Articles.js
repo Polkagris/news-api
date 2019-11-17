@@ -30,9 +30,9 @@ function Articles(props) {
   }, []);
 
   // Function for getting the index from map
-  const getArticleIndex = index => {
+  const getArticleIndex = (item, index) => {
     // Parent callback function
-    props.indexCallback(index);
+    props.indexCallback(item, index);
   };
 
   return (
@@ -45,7 +45,7 @@ function Articles(props) {
             style={css.link}
             to={`/articles/${item.url}`}
             key={item.url}
-            onClick={() => getArticleIndex(index)}
+            onClick={() => getArticleIndex(item, index)}
           >
             {item.title}
           </Link>

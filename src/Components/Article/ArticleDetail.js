@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function ArticleDetail(props) {
   return (
@@ -13,7 +14,12 @@ function ArticleDetail(props) {
           <p style={css.description}>{props.article.description}</p>
           <p style={css.content}>{props.article.content}</p>
           <a href={props.article.url}>Full article: {props.article.url}</a>
-          <h2>{props.article.title}</h2>
+          <Link to={`/search`} key={props.article.url}>
+            Back to search
+          </Link>
+          <Link to={`/articles`} key={props.article.title}>
+            Back to Home
+          </Link>
         </div>
       ) : (
         false

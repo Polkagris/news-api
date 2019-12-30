@@ -1,6 +1,6 @@
 import React from "react";
 
-function Topic() {
+function About() {
   return (
     <div>
       <h1>Topic</h1>
@@ -8,4 +8,4 @@ function Topic() {
   );
 }
 
-export default Topic;
+export default About;

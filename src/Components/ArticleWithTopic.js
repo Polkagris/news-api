@@ -1,29 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function Articles(props) {
+function ArticleWithTopic(props) {
   const [items, setItems] = useState([]);
   const [topic, setTopic] = useState("");
 
   useEffect(() => {
-    fetchArticles();
     getArticleIndex();
+    getTopicHandler();
+    console.log(
+      "Topic from callback in app and sent down to articleWithTopic:",
+      props.topicFromParent
+    );
   }, []);
-
-  const fetchArticles = () => {
-    const url =
-      "https://newsapi.org/v2/top-headlines?" +
-      "sources=bbc-news&" +
-      "apiKey=4355957195de4294ad512147dbb0167a";
-    fetch(url)
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        console.log(data.articles);
-        setItems(data.articles);
-      });
-  };
 
   // Callback-function for getting the index and correct article from map
   const getArticleIndex = (item, index) => {
@@ -31,18 +20,15 @@ function Articles(props) {
   };
 
   const onTopicChangeHandler = e => {
+    // If new input use topic
     setTopic(e.target.value);
   };
 
-  /*   // Topic callback
-  const getArticleTopic = topic => {
-    props.topicCallback(topic);
-  }; */
-
   const getTopicHandler = () => {
+    //setTopic(props.topicFromParent);
     const url =
       "https://newsapi.org/v2/everything?" +
-      `q=${topic}&` +
+      `q=${topic == "" ? props.topicFromParent : topic}&` +
       "pageSize=10&" +
       "apiKey=4355957195de4294ad512147dbb0167a";
     fetch(url)
@@ -52,7 +38,6 @@ function Articles(props) {
       .then(data => {
         console.log(data.articles);
         setItems(data.articles);
-        props.topicCallback(topic);
       });
   };
 
@@ -142,4 +127,4 @@ const css = {
   }
 };
 
-export default Articles;
+export default ArticleWithTopic;
